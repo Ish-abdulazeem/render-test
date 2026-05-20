@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const cors = require('cors')
 
 let notes = [
@@ -38,6 +39,10 @@ app.use(express.json())
 
 app.get('/api/notes', (request, response) => {
   response.json(notes)
+})
+
+app.use((request, response) => {
+  response.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })
 
 app.get('/api/notes/:id', (request, response) => {
