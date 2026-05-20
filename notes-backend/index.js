@@ -32,9 +32,9 @@ app.use(requestLogger)
 app.use(express.static('dist'))
 app.use(express.json())
 
-app.get('/', (request, response) => {
-  response.send('API IS RUNNING')
-})
+// app.get('/', (request, response) => {
+//   response.send('API IS RUNNING')
+// })
 
 app.get('/api/notes', (request, response) => {
   response.json(notes)
