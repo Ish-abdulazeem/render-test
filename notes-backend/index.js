@@ -33,12 +33,14 @@ app.use(requestLogger)
 app.use(express.static('dist'))
 app.use(express.json())
 
-app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname, 'dist', 'index.html'))
-})
+
 
 app.get('/api/notes', (request, response) => {
   response.json(notes)
+})
+
+app.use((request, response) => {
+  response.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })
 
 app.get('/api/notes/:id', (request, response) => {
