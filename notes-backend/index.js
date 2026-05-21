@@ -30,7 +30,7 @@ const requestLogger = (request, response, next) => {
 }
 app.use(cors())
 app.use(requestLogger)
-app.use(express.static('dist'))
+// app.use(express.static('dist'))
 app.use(express.json())
 
 
@@ -39,9 +39,11 @@ app.get('/api/notes', (request, response) => {
   response.json(notes)
 })
 
-app.use((request, response) => {
-  response.sendFile(path.join(__dirname, 'dist', 'index.html'))
-})
+app.use(express.static(path.join(__dirname, 'dist')))
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+// })
 
 app.get('/api/notes/:id', (request, response) => {
   const id = request.params.id
