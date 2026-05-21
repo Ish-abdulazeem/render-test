@@ -41,9 +41,7 @@ app.get('/api/notes', (request, response) => {
 
 app.use(express.static(path.join(__dirname, 'dist')))
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist', 'index.html'))
-// })
+
 
 app.get('/api/notes/:id', (request, response) => {
   const id = request.params.id
@@ -87,6 +85,10 @@ app.delete('/api/notes/:id', (request, response) => {
   notes = notes.filter((note) => note.id !== id)
 
   response.status(204).end()
+})
+
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })
 
 const unknownEndpoint = (request,response) => {
